@@ -9,34 +9,6 @@ function inSection() {}
 function printStatus() {}
 function writeHeaderToLog() {}
 
-function assertThrownErrorContains(f, substr) {
-  try {
-    f();
-  } catch (exc) {
-    // Do not test error messages
-    return;
-  }
-  throw new Test262Error("Expected error containing " + substr + ", no exception thrown");
-}
-
-function assertThrowsInstanceOfWithMessageCheck(f, ctor, _check, msg) {
-  var fullmsg;
-  try {
-    f();
-  } catch (exc) {
-    if (exc instanceof ctor)
-      return;
-    fullmsg = `Assertion failed: expected exception ${ctor.name}, got ${exc}`;
-  }
-
-  if (fullmsg === undefined)
-    fullmsg = `Assertion failed: expected exception ${ctor.name}, no exception thrown`;
-  if (msg !== undefined)
-    fullmsg += " - " + msg;
-
-  throw new Error(fullmsg);
-}
-
 globalThis.createNewGlobal = function() {
   return $262.createRealm().global
 }
